@@ -82,6 +82,10 @@
         Catch ex As Exception
             MessageBox.Show("Error al agregar el cliente: " & ex.Message)
         End Try
+
+        ' Regresar al formulario principal
+        CType(Me.Parent, VistaCliente).MostrarDataGridView()
+
     End Sub
 
     Private Sub LimpiarCampos()
@@ -95,5 +99,9 @@
         rbFemenino.Checked = False
         rbActivo.Checked = False
         rbInactivo.Checked = False
+    End Sub
+
+    Private Sub FormAgregarCliente_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
     End Sub
 End Class

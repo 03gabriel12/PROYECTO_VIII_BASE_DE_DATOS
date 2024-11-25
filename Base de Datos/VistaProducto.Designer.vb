@@ -36,6 +36,7 @@ Partial Class VistaProducto
         GroupBox1 = New GroupBox()
         rbDescripcion = New RadioButton()
         rbCodigoBarra = New RadioButton()
+        PanelContenedor = New Panel()
         FlowLayoutPanel1.SuspendLayout()
         CType(DataGridViewProducto, ComponentModel.ISupportInitialize).BeginInit()
         GroupBox1.SuspendLayout()
@@ -176,11 +177,20 @@ Partial Class VistaProducto
         rbCodigoBarra.Text = "Codigo Barra"
         rbCodigoBarra.UseVisualStyleBackColor = True
         ' 
+        ' PanelContenedor
+        ' 
+        PanelContenedor.BackColor = Color.Transparent
+        PanelContenedor.Location = New Point(458, 132)
+        PanelContenedor.Name = "PanelContenedor"
+        PanelContenedor.Size = New Size(796, 462)
+        PanelContenedor.TabIndex = 16
+        ' 
         ' VistaProducto
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(1368, 531)
+        ClientSize = New Size(1368, 626)
+        Controls.Add(PanelContenedor)
         Controls.Add(GroupBox1)
         Controls.Add(DataGridViewProducto)
         Controls.Add(Label2)
@@ -211,4 +221,5 @@ Partial Class VistaProducto
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents rbDescripcion As RadioButton
     Friend WithEvents rbCodigoBarra As RadioButton
+    Friend WithEvents PanelContenedor As Panel
 End Class

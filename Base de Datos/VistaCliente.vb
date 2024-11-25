@@ -8,7 +8,7 @@ Public Class VistaCliente
     Private Sub VistaCliente_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ActualizarOrden()
         BtnListarCliente_Click(sender, e)
-
+        MostrarDataGridView()
         ' Deshabilitar botones al inicio
         BtnModificarCliente.Enabled = False
         BtnEliminarCliente.Enabled = False
@@ -28,6 +28,7 @@ Public Class VistaCliente
     End Sub
 
     Private Sub BtnBuscarCliente_Click(sender As Object, e As EventArgs) Handles BtnBuscarCliente.Click
+        MostrarDataGridView()
         Dim valor As String = searchCliente.Text.Trim() ' Trim para eliminar espacios en blanco
 
         If String.IsNullOrEmpty(valor) Then
@@ -88,7 +89,7 @@ Public Class VistaCliente
     End Sub
 
     Private Sub BtnLimpiarCliente_Click(sender As Object, e As EventArgs) Handles BtnLimpiarCliente.Click
-
+        MostrarDataGridView()
         DataGridViewCliente.Rows.Clear() ' Limpiar filas si existen
         DataGridViewCliente.Columns.Clear() ' Limpiar columnas si existen
         DataGridViewCliente.DataSource = Nothing ' Limpiar el DataGridView
@@ -101,6 +102,7 @@ Public Class VistaCliente
     End Sub
 
     Private Sub BtnListarCliente_Click(sender As Object, e As EventArgs) Handles BtnListarCliente.Click
+        MostrarDataGridView()
         DataGridViewCliente.Columns.Clear()
         Dim dt As DataTable = cliente.ListarClientes(orderBy)
         DataGridViewCliente.DataSource = dt ' Usar DataGridViewCliente
@@ -177,11 +179,26 @@ Public Class VistaCliente
         End If
     End Sub
 
+    Public Sub MostrarDataGridView()
+        DataGridViewCliente.Visible = True
+        PanelContenedor.Visible = False
+        PanelContenedor.Controls.OfType(Of Form).ToList().ForEach(Sub(f) f.Hide()) ' Ocultar cualquier formulario
+    End Sub
+
+    Private Sub MostrarFormularioAgregar()
+        DataGridViewCliente.Visible = False
+        PanelContenedor.Visible = True
+        Dim formAgregar As New FormAgregarCliente()
+        formAgregar.TopLevel = False ' Hacer que el formulario sea un control hijo
+        formAgregar.FormBorderStyle = FormBorderStyle.None ' Quitar bordes del formulario
+        formAgregar.Dock = DockStyle.Fill ' Llenar el panel
+        PanelContenedor.Controls.Clear() ' Limpiar el panel
+        PanelContenedor.Controls.Add(formAgregar) ' Agregar el nuevo formulario al panel
+        formAgregar.Show() ' Mostrar el formulario
+    End Sub
+
     Private Sub BtnAdiccionarCliente_Click(sender As Object, e As EventArgs) Handles BtnAdiccionarCliente.Click
-        Dim vista = New FormAgregarCliente()
-        vista.MdiParent = Me ' Establecer el formulario principal como MdiParent
-        vista.WindowState = FormWindowState.Maximized ' Establecer el estado de la ventana a maximizado
-        vista.Show() ' Mostrar el formulario
+        MostrarFormularioAgregar()
     End Sub
 
     Private Sub rbCedula_CheckedChanged(sender As Object, e As EventArgs) Handles rbCedula.CheckedChanged
