@@ -30,7 +30,7 @@ Partial Class VistaPresentacion
         ' 
         Label1.AutoSize = True
         Label1.Font = New Font("Segoe UI Historic", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label1.Location = New Point(111, 66)
+        Label1.Location = New Point(302, 75)
         Label1.Name = "Label1"
         Label1.Size = New Size(772, 328)
         Label1.TabIndex = 0
@@ -41,9 +41,10 @@ Partial Class VistaPresentacion
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(955, 479)
+        ClientSize = New Size(1275, 479)
         Controls.Add(Label1)
         Name = "VistaPresentacion"
+        StartPosition = FormStartPosition.WindowsDefaultBounds
         Text = "VistaPresentacion"
         ResumeLayout(False)
         PerformLayout()

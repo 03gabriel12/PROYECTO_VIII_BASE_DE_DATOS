@@ -70,11 +70,12 @@
 
             ' Opcional: Limpiar los campos después de agregar
             LimpiarCampos()
+            ' Regresar al formulario principal
+            'CType(Me.Parent, VistaProducto).MostrarDataGridView()
         Catch ex As Exception
             MessageBox.Show("Error al agregar el producto: " & ex.Message)
         End Try
-        ' Regresar al formulario principal
-        CType(Me.Parent, VistaProducto).MostrarDataGridView()
+
     End Sub
 
     Private Sub LimpiarCampos()

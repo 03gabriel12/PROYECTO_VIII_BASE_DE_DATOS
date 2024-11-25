@@ -79,12 +79,13 @@
 
             ' Opcional: Limpiar los campos después de agregar
             LimpiarCampos()
+
+            ' Regresar al formulario principal
+            'CType(Me.Parent, VistaCliente).MostrarDataGridView()
         Catch ex As Exception
             MessageBox.Show("Error al agregar el cliente: " & ex.Message)
         End Try
 
-        ' Regresar al formulario principal
-        CType(Me.Parent, VistaCliente).MostrarDataGridView()
 
     End Sub
 
@@ -101,7 +102,4 @@
         rbInactivo.Checked = False
     End Sub
 
-    Private Sub FormAgregarCliente_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-    End Sub
 End Class
