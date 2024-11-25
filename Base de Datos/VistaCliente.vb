@@ -90,9 +90,14 @@ Public Class VistaCliente
 
     Private Sub BtnLimpiarCliente_Click(sender As Object, e As EventArgs) Handles BtnLimpiarCliente.Click
         MostrarDataGridView()
-        DataGridViewCliente.Rows.Clear() ' Limpiar filas si existen
-        DataGridViewCliente.Columns.Clear() ' Limpiar columnas si existen
-        DataGridViewCliente.DataSource = Nothing ' Limpiar el DataGridView
+
+        Try
+            DataGridViewCliente.DataSource = Nothing ' Limpiar el DataGridView
+            DataGridViewCliente.Rows.Clear() ' Limpiar filas si existen
+            DataGridViewCliente.Columns.Clear() ' Limpiar columnas si existen
+        Catch ex As Exception
+
+        End Try
         searchCliente.Text = "" ' Limpiar el TextBox ' Deshabilitar botones de modificar y eliminar
 
         BtnModificarCliente.Enabled = False
