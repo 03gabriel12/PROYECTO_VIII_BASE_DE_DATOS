@@ -261,7 +261,7 @@ Partial Class FormAgregarCliente
         ' 
         ' BtnAgregarCliente
         ' 
-        BtnAgregarCliente.Location = New Point(310, 394)
+        BtnAgregarCliente.Location = New Point(309, 397)
         BtnAgregarCliente.Name = "BtnAgregarCliente"
         BtnAgregarCliente.Size = New Size(177, 29)
         BtnAgregarCliente.TabIndex = 10

@@ -90,7 +90,7 @@ Partial Class Form1
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(1414, 589)
+        ClientSize = New Size(1414, 687)
         Controls.Add(MenuStrip1)
         IsMdiContainer = True
         Name = "Form1"

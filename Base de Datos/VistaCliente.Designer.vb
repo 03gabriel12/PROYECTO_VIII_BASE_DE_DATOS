@@ -36,6 +36,7 @@ Partial Class VistaCliente
         GroupBox1 = New GroupBox()
         rbCedula = New RadioButton()
         rbNombre = New RadioButton()
+        PanelContenedor = New Panel()
         FlowLayoutPanel1.SuspendLayout()
         CType(DataGridViewCliente, ComponentModel.ISupportInitialize).BeginInit()
         GroupBox1.SuspendLayout()
@@ -177,11 +178,20 @@ Partial Class VistaCliente
         rbNombre.Text = "Nombre"
         rbNombre.UseVisualStyleBackColor = True
         ' 
+        ' PanelContenedor
+        ' 
+        PanelContenedor.BackColor = Color.Transparent
+        PanelContenedor.Location = New Point(449, 159)
+        PanelContenedor.Name = "PanelContenedor"
+        PanelContenedor.Size = New Size(796, 462)
+        PanelContenedor.TabIndex = 15
+        ' 
         ' VistaCliente
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(1391, 560)
+        ClientSize = New Size(1407, 663)
+        Controls.Add(PanelContenedor)
         Controls.Add(GroupBox1)
         Controls.Add(DataGridViewCliente)
         Controls.Add(Label2)
@@ -212,4 +222,5 @@ Partial Class VistaCliente
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents rbCedula As RadioButton
     Friend WithEvents rbNombre As RadioButton
+    Friend WithEvents PanelContenedor As Panel
 End Class

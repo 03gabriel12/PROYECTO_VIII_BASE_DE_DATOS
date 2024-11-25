@@ -6,7 +6,7 @@
     Private Sub VistaProducto_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ActualizarOrden()
         BtnListarProducto_Click(sender, e)
-
+        MostrarDataGridView()
         ' Deshabilitar botones al inicio
         BtnModificarProducto.Enabled = False
         BtnEliminarProducto.Enabled = False
@@ -26,6 +26,7 @@
     End Sub
 
     Private Sub BtnListarProducto_Click(sender As Object, e As EventArgs) Handles BtnListarProducto.Click
+        MostrarDataGridView()
         DataGridViewProducto.Columns.Clear()
         ' Listar productos y mostrar el resultado en el DataGridView
         Dim dt As DataTable = producto.ListarProductos(orderBy)
@@ -59,11 +60,18 @@
     End Sub
 
     Private Sub BtnLimpiarProducto_Click(sender As Object, e As EventArgs) Handles BtnLimpiarProducto.Click
-        ' Limpiar el DataGridView antes de buscar
-        DataGridViewProducto.Rows.Clear() ' Limpiar filas si existen
-        DataGridViewProducto.Columns.Clear() ' Limpiar columnas si existen
-        DataGridViewProducto.DataSource = Nothing ' Limpiar el DataGridView
+        MostrarDataGridView()
 
+        Try
+
+            DataGridViewProducto.DataSource = Nothing ' Limpiar el DataGridView
+            ' Limpiar el DataGridView antes de buscar
+            DataGridViewProducto.Rows.Clear() ' Limpiar filas si existen
+            DataGridViewProducto.Columns.Clear() ' Limpiar columnas si existen
+
+        Catch ex As Exception
+
+        End Try
 
         searchProducto.Text = "" ' Limpiar el TextBox de búsqueda
 
@@ -75,6 +83,7 @@
     End Sub
 
     Private Sub BtnBuscarProducto_Click(sender As Object, e As EventArgs) Handles BtnBuscarProducto.Click
+        MostrarDataGridView()
         Dim valor As String = searchProducto.Text
         If valor = "" Then
             MessageBox.Show("El campo está vacío.")
@@ -130,11 +139,26 @@
         searchProducto.Text = ""
     End Sub
 
+    Public Sub MostrarDataGridView()
+        DataGridViewProducto.Visible = True
+        PanelContenedor.Visible = False
+        PanelContenedor.Controls.OfType(Of Form).ToList().ForEach(Sub(f) f.Hide()) ' Ocultar cualquier formulario
+    End Sub
+
+    Private Sub MostrarFormularioAgregar()
+        DataGridViewProducto.Visible = False
+        PanelContenedor.Visible = True
+        Dim formAgregar As New FormAgregarProducto()
+        formAgregar.TopLevel = False ' Hacer que el formulario sea un control hijo
+        formAgregar.FormBorderStyle = FormBorderStyle.None ' Quitar bordes del formulario
+        formAgregar.Dock = DockStyle.Fill ' Llenar el panel
+        PanelContenedor.Controls.Clear() ' Limpiar el panel
+        PanelContenedor.Controls.Add(formAgregar) ' Agregar el nuevo formulario al panel
+        formAgregar.Show() ' Mostrar el formulario
+    End Sub
+
     Private Sub BtnAdiccionarProducto_Click(sender As Object, e As EventArgs) Handles BtnAdiccionarProducto.Click
-        Dim vista = New FormAgregarProducto()
-        vista.MdiParent = Me ' Establecer el formulario principal como MdiParent
-        vista.WindowState = FormWindowState.Maximized ' Establecer el estado de la ventana a maximizado
-        vista.Show() ' Mostrar el formulario
+        MostrarFormularioAgregar()
     End Sub
 
     Private Sub BtnModificarProducto_Click(sender As Object, e As EventArgs) Handles BtnModificarProducto.Click
